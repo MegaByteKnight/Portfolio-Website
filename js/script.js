@@ -80,35 +80,4 @@ ScrollReveal().reveal(".home-content h3, .home-content p, .about-content", {
 	origin: "right",
 });
 
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-	anchor.addEventListener("click", function (e) {
-		e.preventDefault();
 
-		const targetId = this.getAttribute("href").substring(1);
-		const targetElement = document.getElementById(targetId);
-		let headerOffset = 100; // Default header offset
-
-		// Check if the clicked link is the "About" link
-		if (this.id === "about-link") {
-			headerOffset = 100; // Custom header offset for "About"
-		}
-
-		const elementPosition = targetElement.getBoundingClientRect().top;
-		const offsetPosition =
-			elementPosition + window.pageYOffset - headerOffset;
-
-		// Millennium Falcon animation during scroll
-		const falcon = document.querySelector(".millennium-falcon");
-		falcon.style.opacity = 0.2; // Make sure the falcon is visible
-
-		window.scrollTo({
-			top: offsetPosition,
-			behavior: "smooth",
-		});
-
-		// Hide the falcon after scroll animation
-		setTimeout(() => {
-			falcon.style.opacity = 0; // Hide the falcon after scroll
-		}, 600); // Adjust the timeout to match the scroll duration
-	});
-});
